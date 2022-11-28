@@ -2,7 +2,7 @@ package models
 
 import (
 	"net/http"
-	"vp_week11_echo/db"
+	"vp_giver_echo/db"
 )
 
 type Mahasiswa struct {

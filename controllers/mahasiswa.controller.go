@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"net/http"
-	"vp_week11_echo/models"
+	"vp_giver_echo/models"
 
 	"github.com/labstack/echo/v4"
 )

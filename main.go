@@ -1,8 +1,8 @@
 package main
 
 import (
-	"vp_week11_echo/routes"
-	"vp_week11_echo/db"
+	"vp_giver_echo/routes"
+	"vp_giver_echo/db"
 )
 func main() {
 

@@ -1,4 +1,4 @@
-module vp_week11_echo
+module vp_giver_echo
 
 go 1.19
 

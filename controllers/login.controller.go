@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 	"time"
-	"vp_week11_echo/helpers"
-	"vp_week11_echo/models"
+	"vp_giver_echo/helpers"
+	"vp_giver_echo/models"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"

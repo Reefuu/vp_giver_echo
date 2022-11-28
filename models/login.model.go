@@ -3,8 +3,8 @@ package models
 import (
 	"database/sql"
 	"fmt"
-	"vp_week11_echo/db"
-	"vp_week11_echo/helpers"
+	"vp_giver_echo/db"
+	"vp_giver_echo/helpers"
 )
 
 type User struct{

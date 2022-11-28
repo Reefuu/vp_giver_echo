@@ -2,8 +2,8 @@ package routes
 
 import (
 	"net/http"
-	"vp_week11_echo/controllers"
-	"vp_week11_echo/middleware"
+	"vp_giver_echo/controllers"
+	"vp_giver_echo/middleware"
 
 	"github.com/labstack/echo/v4"
 )
