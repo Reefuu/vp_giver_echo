@@ -16,6 +16,7 @@ func Init() {
 	conn := conf.DB_USERNAME + ":" + conf.DB_PASSWORD + "@tcp(" + conf.DB_HOST + ":" +
 		conf.DB_PORT + ")/" + conf.DB_NAME
 
+
 	db, err = sql.Open("mysql", conn)
 
 	if err != nil {
@@ -24,7 +25,7 @@ func Init() {
 
 	err = db.Ping()
 	if err != nil {
-		panic("DSN Invalid")
+		panic(err.Error())
 	}
 }
 
