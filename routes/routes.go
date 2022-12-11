@@ -36,6 +36,18 @@ func Init() *echo.Echo {
 
 	e.POST("/pelajaran", controllers.StorePelajaran)
 
+	e.GET("/buku", controllers.FetchAllBuku)
+
+	e.GET("/buku/pelajaran/:pelajaran", controllers.FetchBukuPljrn)
+
+	e.POST("/buku", controllers.StoreBuku)
+
+	e.GET("/bab", controllers.FetchAllBab)
+
+	e.GET("/bab/buku/:buku", controllers.FetchBabBuku)
+
+	e.POST("/bab", controllers.StoreBab)
+
 	// e.PATCH("/mahasiswa", controllers.UpdateMahasiswa)
 
 	// e.DELETE("/mahasiswa", controllers.DeleteMahasiswa)

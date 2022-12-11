@@ -5,21 +5,22 @@ import (
 	"vp_giver_echo/db"
 )
 
-type Buku struct {
-	Buku_Id    		int `json:"buku_id"`
-	Pelajaran_Id  	int `json:"pelajaran_id"`
+type Bab struct {
+	Bab_id    		int `json:"bab_id"`
+	Bab_Nama     	string `json:"bab_nama"`
+	Buku_Id  		int `json:"buku_id"`
 	Image_Cover     string `json:"image_cover"`
-	Image_Banner     string `json:"image_banner"`
+	Image_Banner    string `json:"image_banner"`
 }
 
-func FetchAllBuku() (Response, error) {
-	var obj Buku
-	var arrObj []Buku
+func FetchAllBab() (Response, error) {
+	var obj Bab
+	var arrObj []Bab
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT * FROM buku"
+	sqlStatement := "SELECT * FROM bab"
 
 	rows, err := con.Query(sqlStatement)
 
@@ -30,7 +31,7 @@ func FetchAllBuku() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Buku_Id, &obj.Pelajaran_Id, &obj.Image_Cover, &obj.Image_Banner)
+		err = rows.Scan(&obj.Bab_id, &obj.Bab_Nama, &obj.Buku_Id, &obj.Image_Cover, &obj.Image_Banner)
 		if err != nil {
 			return res, err
 		}
@@ -46,16 +47,16 @@ func FetchAllBuku() (Response, error) {
 
 }
 
-func FetchBukuPljrn(intpelajaran int64) (Response, error) {
-	var obj Buku
-	var arrObj []Buku
+func FetchBabBuku(intbuku int64) (Response, error) {
+	var obj Bab
+	var arrObj []Bab
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT * FROM buku WHERE pelajaran_id = ?"
+	sqlStatement := "SELECT * FROM bab WHERE buku_id = ?"
 
-	rows, err := con.Query(sqlStatement, intpelajaran)
+	rows, err := con.Query(sqlStatement, intbuku)
 
 	defer rows.Close()
 
@@ -64,7 +65,7 @@ func FetchBukuPljrn(intpelajaran int64) (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Buku_Id, &obj.Pelajaran_Id, &obj.Image_Cover, &obj.Image_Banner)
+		err = rows.Scan(&obj.Bab_id, &obj.Bab_Nama, &obj.Buku_Id, &obj.Image_Cover, &obj.Image_Banner)
 		if err != nil {
 			return res, err
 		}
@@ -80,19 +81,19 @@ func FetchBukuPljrn(intpelajaran int64) (Response, error) {
 
 }
 
-func StoreBuku(pelajaran_id int64, imageCover string, imageBanner string) (Response, error) {
+func StoreBab(bab_nama string, buku_id int64, imageCover string, imageBanner string) (Response, error) {
 
 	var res Response
 
 	con := db.CreateCon()
-	sqlStatement := "INSERT INTO buku(pelajaran_id, imageCover, imageBanner) VALUES (?, ?, ?)"
+	sqlStatement := "INSERT INTO bab(bab_nama, buku_id, imageCover, imageBanner) VALUES (?, ?, ?, ?)"
 	stmt, err := con.Prepare(sqlStatement)
 
 	if err != nil {
 		return res, err
 	}
 
-	result, err := stmt.Exec(pelajaran_id, imageCover, imageBanner)
+	result, err := stmt.Exec(bab_nama, buku_id, imageCover, imageBanner)
 
 	if err != nil {
 		return res, err
