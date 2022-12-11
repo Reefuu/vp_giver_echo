@@ -3,16 +3,16 @@ package routes
 import (
 	"net/http"
 	"vp_giver_echo/controllers"
-	"vp_giver_echo/middleware"
+	// "vp_giver_echo/middleware"
 
 	"github.com/labstack/echo/v4"
 )
 
-func getUser(c echo.Context) error {
-	// User ID from path `users/:id`
-	name := c.Param("name")
-	return c.String(http.StatusOK, "Hello, "+name)
-}
+// func getUser(c echo.Context) error {
+// 	// User ID from path `users/:id`
+// 	name := c.Param("name")
+// 	return c.String(http.StatusOK, "Hello, "+name)
+// }
 
 func Init() *echo.Echo {
 	e := echo.New()
@@ -20,27 +20,29 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "Hello, Guys`!")
 	})
 
-	e.GET("/user", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, this is user page!!")
-	})
+	// e.GET("/user", func(c echo.Context) error {
+	// 	return c.String(http.StatusOK, "Hello, this is user page!!")
+	// })
 
-	e.GET("user/:name", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, this is user page!")
-	})
+	// e.GET("user/:name", func(c echo.Context) error {
+	// 	return c.String(http.StatusOK, "Hello, this is user page!")
+	// })
 
-	e.GET("/user/:name", getUser)
+	// e.GET("/user/:name", getUser)
 
-	e.GET("/mahasiswa", controllers.FetchAllMahasiswa, middleware.IsAuthenticated)
+	e.GET("/pelajaran", controllers.FetchAllPelajaran)
 
-	e.POST("/mahasiswa", controllers.StoreMahasiswa)
+	e.GET("/pelajaran/kelas/:kelas", controllers.FetchPelajaranKls)
 
-	e.PATCH("/mahasiswa", controllers.UpdateMahasiswa)
+	e.POST("/pelajaran", controllers.StorePelajaran)
 
-	e.DELETE("/mahasiswa", controllers.DeleteMahasiswa)
+	// e.PATCH("/mahasiswa", controllers.UpdateMahasiswa)
 
-	e.GET("generate-hash/:password", controllers.GenerateHashPassword)
+	// e.DELETE("/mahasiswa", controllers.DeleteMahasiswa)
 
-	e.POST("/login", controllers.CheckLogin) //tambah
+	// e.GET("generate-hash/:password", controllers.GenerateHashPassword)
+
+	// e.POST("/login", controllers.CheckLogin) //tambah
 
 	return e
 

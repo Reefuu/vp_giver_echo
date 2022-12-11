@@ -3,5 +3,5 @@
     "DB_PASSWORD": "",
     "DB_PORT": "3306",
     "DB_HOST": "127.0.0.1",
-    "DB_NAME": "vp_2022"
+    "DB_NAME": "alp_vp"
 }
