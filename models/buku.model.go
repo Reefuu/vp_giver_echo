@@ -7,9 +7,10 @@ import (
 
 type Buku struct {
 	Buku_Id    		int `json:"buku_id"`
+	Nama_Buku		string `json:"nama_buku"`
 	Pelajaran_Id  	int `json:"pelajaran_id"`
 	Image_Cover     string `json:"image_cover"`
-	Image_Banner     string `json:"image_banner"`
+	Image_Banner    string `json:"image_banner"`
 }
 
 func FetchAllBuku() (Response, error) {
@@ -30,7 +31,7 @@ func FetchAllBuku() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Buku_Id, &obj.Pelajaran_Id, &obj.Image_Cover, &obj.Image_Banner)
+		err = rows.Scan(&obj.Buku_Id, &obj.Nama_Buku, &obj.Pelajaran_Id, &obj.Image_Cover, &obj.Image_Banner)
 		if err != nil {
 			return res, err
 		}
@@ -64,7 +65,7 @@ func FetchBukuPljrn(intpelajaran int64) (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Buku_Id, &obj.Pelajaran_Id, &obj.Image_Cover, &obj.Image_Banner)
+		err = rows.Scan(&obj.Buku_Id, &obj.Nama_Buku, &obj.Pelajaran_Id, &obj.Image_Cover, &obj.Image_Banner)
 		if err != nil {
 			return res, err
 		}
@@ -80,19 +81,19 @@ func FetchBukuPljrn(intpelajaran int64) (Response, error) {
 
 }
 
-func StoreBuku(pelajaran_id int64, imageCover string, imageBanner string) (Response, error) {
+func StoreBuku(nama_buku string, pelajaran_id int64, imageCover string, imageBanner string) (Response, error) {
 
 	var res Response
 
 	con := db.CreateCon()
-	sqlStatement := "INSERT INTO buku(pelajaran_id, imageCover, imageBanner) VALUES (?, ?, ?)"
+	sqlStatement := "INSERT INTO buku(nama_buku, pelajaran_id, imageCover, imageBanner) VALUES (?, ?, ?, ?)"
 	stmt, err := con.Prepare(sqlStatement)
 
 	if err != nil {
 		return res, err
 	}
 
-	result, err := stmt.Exec(pelajaran_id, imageCover, imageBanner)
+	result, err := stmt.Exec(nama_buku, pelajaran_id, imageCover, imageBanner)
 
 	if err != nil {
 		return res, err

@@ -38,13 +38,14 @@ func FetchBukuPljrn(c echo.Context) error {
 
 func StoreBuku(c echo.Context) error {
 
+	nama_buku := c.FormValue("nama_buku")
 	pelajaran := c.FormValue("pelajaran_id")
 	intpelajaran, err := strconv.ParseInt(pelajaran, 0, 64)
 	imageCover := c.FormValue("imageCover")
 	imageBanner := c.FormValue("imageBanner")
 
 
-	result, err := models.StoreBuku(intpelajaran, imageCover, imageBanner)
+	result, err := models.StoreBuku(nama_buku, intpelajaran, imageCover, imageBanner)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,
