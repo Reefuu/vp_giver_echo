@@ -48,6 +48,12 @@ func Init() *echo.Echo {
 
 	e.POST("/bab", controllers.StoreBab)
 
+	e.GET("/subbab", controllers.FetchAllSubbab)
+
+	e.GET("/subbab/bab/:bab", controllers.FetchSubbabBab)
+
+	e.POST("/subbab", controllers.StoreSubbab)
+
 	// e.PATCH("/mahasiswa", controllers.UpdateMahasiswa)
 
 	// e.DELETE("/mahasiswa", controllers.DeleteMahasiswa)
