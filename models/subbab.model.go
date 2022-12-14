@@ -8,6 +8,7 @@ import (
 type Subbab struct {
 	Subbab_Id    	int `json:"subbab_id"`
 	Materi			string `json:"materi"`
+	Image_Banner	string `json:"image_banner"`
 	Bab_Id  		int `json:"bab_id"`
 }
 
@@ -29,7 +30,7 @@ func FetchAllSubbab() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Subbab_Id, &obj.Materi, &obj.Bab_Id)
+		err = rows.Scan(&obj.Subbab_Id, &obj.Materi, &obj.Image_Banner, &obj.Bab_Id)
 		if err != nil {
 			return res, err
 		}
@@ -63,7 +64,7 @@ func FetchSubbabBab(intbab int64) (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Subbab_Id, &obj.Materi, &obj.Bab_Id)
+		err = rows.Scan(&obj.Subbab_Id, &obj.Materi, &obj.Image_Banner, &obj.Bab_Id)
 		if err != nil {
 			return res, err
 		}
@@ -79,19 +80,19 @@ func FetchSubbabBab(intbab int64) (Response, error) {
 
 }
 
-func StoreSubbab(materi string, bab_id int64) (Response, error) {
+func StoreSubbab(materi string, imageBanner string, bab_id int64) (Response, error) {
 
 	var res Response
 
 	con := db.CreateCon()
-	sqlStatement := "INSERT INTO subbab(materi, bab_id) VALUES (?, ?)"
+	sqlStatement := "INSERT INTO subbab(materi, imageBanner, bab_id) VALUES (?, ?, ?)"
 	stmt, err := con.Prepare(sqlStatement)
 
 	if err != nil {
 		return res, err
 	}
 
-	result, err := stmt.Exec(materi, bab_id)
+	result, err := stmt.Exec(materi, imageBanner, bab_id)
 
 	if err != nil {
 		return res, err

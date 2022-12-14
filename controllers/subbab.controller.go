@@ -39,11 +39,12 @@ func FetchSubbabBab(c echo.Context) error {
 func StoreSubbab(c echo.Context) error {
 
 	materi := c.FormValue("materi")
+	imageBanner := c.FormValue("imageBanner")
 	bab := c.FormValue("bab_id")
 	intbab, err := strconv.ParseInt(bab, 0, 64)
 
 
-	result, err := models.StoreSubbab(materi, intbab)
+	result, err := models.StoreSubbab(materi, imageBanner, intbab)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,
