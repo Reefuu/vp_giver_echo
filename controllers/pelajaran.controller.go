@@ -20,7 +20,6 @@ func FetchAllPelajaran(c echo.Context) error {
 	return c.JSON(http.StatusOK, result)
 }
 
-
 func FetchPelajaranKls(c echo.Context) error {
 
 	kelas := c.Param("kelas")
@@ -41,11 +40,10 @@ func StorePelajaran(c echo.Context) error {
 	nama_pelajaran := c.FormValue("nama_pelajaran")
 	kelas := c.FormValue("kelas")
 	intkelas, err := strconv.ParseInt(kelas, 0, 64)
-	imageCover := c.FormValue("imageCover")
+	image := c.FormValue("image")
 	imageBanner := c.FormValue("imageBanner")
 
-
-	result, err := models.StorePelajaran(nama_pelajaran, intkelas, imageCover, imageBanner)
+	result, err := models.StorePelajaran(nama_pelajaran, intkelas, image, imageBanner)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,

@@ -6,11 +6,11 @@ import (
 )
 
 type Pelajaran struct {
-	Pelajaran_ID    int `json:"pelajaran_id"`
-	Nama_Pelajaran  string `json:"nama_pelajaran"`
-	Kelas     		int `json:"kelas"`
-	Image_Cover     		string `json:"image_cover"`
-	Image_Banner     		string `json:"image_banner"`
+	Pelajaran_ID   int    `json:"pelajaran_id"`
+	Nama_Pelajaran string `json:"nama_pelajaran"`
+	Kelas          int    `json:"kelas"`
+	Image_Cover    string `json:"image_cover"`
+	Image_Banner   string `json:"image_banner"`
 }
 
 func FetchAllPelajaran() (Response, error) {
@@ -81,19 +81,19 @@ func FetchPelajaranKls(intkelas int64) (Response, error) {
 
 }
 
-func StorePelajaran(nama_pelajaran string, kelas int64, imageCover string, imageBanner string) (Response, error) {
+func StorePelajaran(nama_pelajaran string, kelas int64, image string, imageBanner string) (Response, error) {
 
 	var res Response
 
 	con := db.CreateCon()
-	sqlStatement := "INSERT INTO pelajaran(nama_pelajaran, kelas, imageCover, imageBanner) VALUES (?, ?, ?, ?)"
+	sqlStatement := "INSERT INTO pelajaran(nama_pelajaran, kelas, image, imageBanner) VALUES (?, ?, ?, ?)"
 	stmt, err := con.Prepare(sqlStatement)
 
 	if err != nil {
 		return res, err
 	}
 
-	result, err := stmt.Exec(nama_pelajaran, kelas, imageCover, imageBanner)
+	result, err := stmt.Exec(nama_pelajaran, kelas, image, imageBanner)
 
 	if err != nil {
 		return res, err

@@ -58,9 +58,11 @@ func Init() *echo.Echo {
 
 	// e.DELETE("/mahasiswa", controllers.DeleteMahasiswa)
 
-	// e.GET("generate-hash/:password", controllers.GenerateHashPassword)
+	e.GET("/users", controllers.FetchAllUsers)
 
-	// e.POST("/login", controllers.CheckLogin) //tambah
+	e.POST("/login", controllers.CheckLogin)
+
+	e.POST("/register", controllers.RegisterNewAcc)
 
 	return e
 
