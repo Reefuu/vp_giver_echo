@@ -66,6 +66,13 @@ func Init() *echo.Echo {
 
 	e.PATCH("/koin", controllers.AddCoin)
 
+	e.GET("/quiz", controllers.FetchAllQuiz)
+
+	e.GET("/quiz/subbab/:subbab", controllers.FetchQuizSubbab)
+
+	e.POST("/quiz", controllers.StoreQuiz)
+	
+
 	return e
 
 }
