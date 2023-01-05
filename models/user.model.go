@@ -49,3 +49,35 @@ func FetchAllUsers() (Response, error) {
 	return res, nil
 
 }
+
+func AddCoin(nama string, intKoin int64) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+	sqlStatement := "UPDATE users SET koin=? WHERE nama=?"
+	stmt, err := con.Prepare(sqlStatement)
+
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(intKoin, nama)
+
+	if err != nil {
+		return res, err
+	}
+
+	rowAffectedID, err := result.RowsAffected()
+
+	if err != nil {
+		return res, err
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"row_affected_id": rowAffectedID,
+	}
+
+	return res, nil
+}

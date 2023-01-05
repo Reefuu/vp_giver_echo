@@ -64,6 +64,8 @@ func Init() *echo.Echo {
 
 	e.POST("/register", controllers.RegisterNewAcc)
 
+	e.PATCH("/koin", controllers.AddCoin)
+
 	return e
 
 }
