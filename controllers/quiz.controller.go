@@ -50,3 +50,30 @@ func StoreQuiz(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, result)
 }
+
+func CheckQuiz(c echo.Context) error {
+	pertanyaan := c.FormValue("pertanyaan")
+	jawaban := c.FormValue("jawaban")
+
+	res, err := models.CheckQuiz(pertanyaan, jawaban)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"message1": err.Error(),
+		})
+	}
+
+	if !res {
+		return echo.ErrUnauthorized
+	}
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"message2": err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]string{
+		"message": "Jawaban Benar",
+	})
+}

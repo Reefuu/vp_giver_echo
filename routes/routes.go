@@ -71,7 +71,8 @@ func Init() *echo.Echo {
 	e.GET("/quiz/subbab/:subbab", controllers.FetchQuizSubbab)
 
 	e.POST("/quiz", controllers.StoreQuiz)
-	
+
+	e.POST("/checkquiz", controllers.CheckQuiz)
 
 	return e
 
